@@ -421,3 +421,86 @@ figcaption {
 .lightbox-active {
     display: flex !important;
 }
+
+/* ============================================================
+   10. SELEZIONE TESTO IN ROSSO CINEMA
+   ============================================================ */
+::selection {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* ============================================================
+   11. SCROLLBAR CUSTOM
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff1a1a;
+}
+
+/* ============================================================
+   12. FADE-IN CARD ALL'ENTRATA (usato con Intersection Observer in JS)
+   ============================================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stato iniziale: invisibile e abbassata */
+.chapter-link {
+    opacity: 0;
+}
+
+/* Classe aggiunta dal JS quando la card entra nel viewport */
+.chapter-link.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ============================================================
+   13. OVERLAY HOVER CINEMATOGRAFICO SULL'IMMAGINE
+   ============================================================ */
+
+/* Il contenitore deve essere relativo per posizionare l'overlay */
+.chapter-image {
+    position: relative;
+}
+
+/* Overlay rosso semitrasparente con numero capitolo */
+.chapter-image::after {
+    content: counter(capitolo, decimal-leading-zero);
+    position: absolute;
+    inset: 0;
+    background: rgba(229, 9, 20, 0.75);
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 3em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    letter-spacing: 2px;
+}
+
+.chapter-card:hover .chapter-image::after {
+    opacity: 1;
+}

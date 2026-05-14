@@ -94,3 +94,41 @@ if (lightbox) {
         lightbox.classList.remove('lightbox-active');
     });
 }
+
+/* ==========================================
+   5. FADE-IN CARD CON INTERSECTION OBSERVER
+   ========================================== */
+// Seleziona tutti i link-card della homepage
+const cards = document.querySelectorAll('.chapter-link');
+
+// Crea l'observer: si attiva quando la card entra nel viewport
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Aggiunge un ritardo progressivo per effetto a cascata
+            entry.target.style.animationDelay = (index * 0.08) + 's';
+            entry.target.classList.add('visible');
+            // Smette di osservare la card dopo che è apparsa
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1 // Si attiva quando almeno il 10% della card è visibile
+});
+
+// Inizia ad osservare ogni card
+cards.forEach(card => observer.observe(card));
+
+/* ==========================================
+   6. TITOLO DINAMICO NEL TAB
+   ========================================== */
+const titoloOriginale = document.title;
+
+// Quando l'utente lascia il tab, cambia il titolo
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        document.title = '👁️ Torna a Film Art!';
+    } else {
+        document.title = titoloOriginale;
+    }
+});
