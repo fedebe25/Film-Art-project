@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
 </head>
 <body class="sub-page">
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
 
     <header class="main-header">
         <h1>FILM ART: BORDWELL & THOMPSON</h1>
@@ -16,6 +19,7 @@
         <div class="back-nav">
             <a href="../index.html" class="btn-back">&larr; Torna alla Home Page</a>
         </div>
+        <button id="darkModeToggle" title="Cambia Tema">🌙</button>
     </header>
 
     <section class="section-title-box">
@@ -86,6 +90,13 @@
     <footer class="main-footer">
         <p>&copy; 2026 - Progetto Scolastico Film Art</p>
     </footer>
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="Zoom">
+    </div>
+
+    <button onclick="topFunction()" id="backToTop" title="Torna su">↑</button>
+
+    <script src="../js/script.js"></script>
 
 </body>
 </html>
