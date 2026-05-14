@@ -305,3 +305,119 @@ figcaption {
     background-color: #fff;
     color: #000;
 }
+/* ============================================================
+   7. AGGIUNTE JAVASCRIPT: BARRA E TASTO TORNA SU
+   ============================================================ */
+
+/* Contenitore invisibile in cima alla pagina per la barra */
+#progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Spessore della barra */
+    background: transparent;
+    z-index: 9999; /* Deve stare sopra a tutto, anche alla nav */
+}
+
+/* La barra rossa effettiva che si allunga */
+#progress-bar {
+    height: 100%;
+    background: var(--accent-color);
+    width: 0%; /* Parte da zero */
+    transition: width 0.1s ease; /* Movimento fluido */
+}
+
+/* Tasto Torna Su */
+#backToTop {
+    display: none; /* Nascondi all'inizio, apparirà con JS */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%; /* Tondo perfetto */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    font-size: 20px;
+    line-height: 1;
+}
+
+#backToTop:hover {
+    transform: scale(1.1); /* Si ingrandisce un po' quando ci passi sopra */
+}
+/* ============================================================
+   8. DARK MODE (MODALITÀ CINEMA)
+   ============================================================ */
+/* Stile del pulsante nella navbar */
+#darkModeToggle {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+#darkModeToggle:hover { transform: scale(1.2); }
+
+/* Regole per quando la Dark Mode è attiva */
+[data-theme="dark"] {
+    --light-bg: #121212; /* Sfondo scuro generale */
+    --text-color: #ddd;  /* Testo grigio chiaro per non accecare */
+    --title-color: #fff; /* Titoli bianchi */
+}
+
+/* Scurisce anche le card, il menu e i blocchi testo */
+[data-theme="dark"] .chapter-card, 
+[data-theme="dark"] .main-nav, 
+[data-theme="dark"] .section-title-box {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+/* ============================================================
+   9. LIGHTBOX (ZOOM IMMAGINI)
+   ============================================================ */
+/* Rende il cursore a forma di lente di ingrandimento su tutte le foto */
+/* Rende il cursore a forma di lente SOLO sulle immagini di studio (non sulle card) */
+.container-large img, .content-block img, figure img {
+    cursor: zoom-in;
+}
+
+/* Le immagini delle card tornano ad avere il cursore a "manina" del link */
+.chapter-card img {
+    cursor: pointer;
+}
+
+/* Il rettangolo nero in sovrimpressione */
+#lightbox {
+    display: none; /* Nascosto di base */
+    position: fixed;
+    z-index: 10000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); /* Nero trasparente al 90% */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Immagine ingrandita */
+#lightbox img {
+    max-width: 90%;
+    max-height: 90vh;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    cursor: zoom-out;
+}
+
+/* Classe aggiunta dal JS per mostrare il lightbox */
+.lightbox-active {
+    display: flex !important;
+}
